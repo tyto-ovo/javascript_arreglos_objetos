@@ -81,43 +81,71 @@ let htmlAlquiler = ``;
 
 for (let alquilerCard of propiedades_alquiler) {
   htmlAlquiler += `
-  <div class="col-md-4 mb-4">
-            <div class="card">
-              <img
-                src=${alquilerCard.src}
-                class="card-img-top"
-                alt="Imagen del departamento"
-              />
-              <div class="card-body">
-                <h5 class="card-title">${alquilerCard.nombre}</h5>
-                <p class="card-text">
-                  ${alquilerCard.descripcion}
-                </p>
-                <p>
-                  <i class="fas fa-map-marker-alt"></i> ${
-                    alquilerCard.ubicacion
-                  }
-                </p>
-                <p>
-                  <i class="fas fa-bed"></i> ${
-                    alquilerCard.habitaciones
-                  } Habitaciones
-                </p>
-                <p><i class="fas fa-dollar-sign"></i> ${alquilerCard.costo.toLocaleString(
-                  "de-DE"
-                )}</p>
-                <p class="text-danger">
-                  <i class="fas fa-smoking-ban"></i> No se permite fumar
-                </p>
-                <p class="text-danger">
-                  <i class="fa-solid fa-ban"></i> No se permiten mascotas
-                </p>
+<div class="col-md-4 mb-4">
+          <div class="card">
+            <img
+              src=${alquilerCard.src}
+              class="card-img-top"
+              alt="Imagen del departamento"
+            />
+            <div class="card-body">
+              <h5 class="card-title">${alquilerCard.nombre}</h5>
+              <p class="card-text">
+                ${alquilerCard.descripcion}
+              </p>
+              <p>
+                <i class="fas fa-map-marker-alt"></i> ${alquilerCard.ubicacion}
+              </p>
+              <p>
+                <i class="fas fa-bed"></i> ${
+                  alquilerCard.habitaciones
+                } Habitaciones
+              </p>
+              <p><i class="fas fa-dollar-sign"></i> ${alquilerCard.costo.toLocaleString(
+                "de-DE"
+              )}</p>`;
+  if (alquilerCard.smoke == true && alquilerCard.pets == true) {
+    htmlAlquiler += `<p class="text-success">
+                    <i class="fas fa-smoking"></i> Permitido fumar
+                  </p>
+                  <p class="text-success">
+                    <i class="fa-solid fa-paw"></i> Mascotas permitidas
+                  </p>
+                </div>
               </div>
+            </div>`;
+  } else if (alquilerCard.smoke == false && alquilerCard.pets == true) {
+    htmlAlquiler += `<p class="text-danger">
+                <i class="fas fa-smoking-ban"></i> No se permite fumar
+              </p>
+              <p class="text-success">
+                <i class="fa-solid fa-paw"></i> Mascotas permitidas
+              </p>
             </div>
           </div>
-      `;
+        </div>`;
+  } else if (alquilerCard.smoke == true && alquilerCard.pets == false) {
+    htmlAlquiler += `<p class="text-success">
+                    <i class="fas fa-smoking"></i> Permitido fumar
+                  </p>
+                  <p class="text-danger">
+                    <i class="fa-solid fa-ban"></i> No se permiten mascotas
+                  </p>
+                </div>
+              </div>
+            </div>`;
+  } else if (alquilerCard.smoke == false && alquilerCard.pets == false) {
+    htmlAlquiler += `<p class="text-danger">
+                    <i class="fas fa-smoking-ban"></i> No se permite fumar
+                  </p>
+                  <p class="text-danger">
+                    <i class="fa-solid fa-ban"></i> No se permiten mascotas
+                  </p>
+                </div>
+              </div>
+            </div>`;
+  }
 }
-
 elementoAlquiler.innerHTML = htmlAlquiler;
 
 function tresPrimerosArriendos() {
@@ -147,8 +175,39 @@ function tresPrimerosArriendos() {
                   </p>
                   <p><i class="fas fa-dollar-sign"></i> ${casa.costo.toLocaleString(
                     "de-DE"
-                  )}</p>
+                  )}</p>`;
+    if (casa.smoke == true && casa.pets == true) {
+      paraInsertar += `<p class="text-success">
+                    <i class="fas fa-smoking"></i> Permitido fumar
+                  </p>
+                  <p class="text-success">
+                    <i class="fa-solid fa-paw"></i> Mascotas permitidas
+                  </p>
+                </div>
+              </div>
+            </div>`;
+    } else if (casa.smoke == false && casa.pets == true) {
+      paraInsertar += `<p class="text-danger">
+                <i class="fas fa-smoking-ban"></i> No se permite fumar
+              </p>
+              <p class="text-success">
+                <i class="fa-solid fa-paw"></i> Mascotas permitidas
+              </p>
+            </div>
+          </div>
+        </div>`;
+    } else if (casa.smoke == true && casa.pets == false) {
+      paraInsertar += `<p class="text-success">
+                    <i class="fas fa-smoking"></i> Permitido fumar
+                  </p>
                   <p class="text-danger">
+                    <i class="fa-solid fa-ban"></i> No se permiten mascotas
+                  </p>
+                </div>
+              </div>
+            </div>`;
+    } else if (casa.smoke == false && casa.pets == false) {
+      paraInsertar += `<p class="text-danger">
                     <i class="fas fa-smoking-ban"></i> No se permite fumar
                   </p>
                   <p class="text-danger">
@@ -156,8 +215,8 @@ function tresPrimerosArriendos() {
                   </p>
                 </div>
               </div>
-            </div>
-          `;
+            </div>`;
+    }
   }
   toRent.innerHTML = paraInsertar;
 }

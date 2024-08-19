@@ -102,21 +102,68 @@ for (let ventasCard of propiedades_venta) {
                 } Habitaciones
               </p>
               <p><i class="fas fa-dollar-sign"></i> ${ventasCard.costo.toLocaleString(
-                "es-ES"
-              )}</p>
-              <p class="text-danger">
+                "de-DE"
+              )}</p>`;
+  if (ventasCard.smoke == true && ventasCard.pets == true) {
+    htmlVentas += `<p class="text-success">
+                    <i class="fas fa-smoking"></i> Permitido fumar
+                  </p>
+                  <p class="text-success">
+                    <i class="fa-solid fa-paw"></i> Mascotas permitidas
+                  </p>
+                </div>
+              </div>
+            </div>`;
+  } else if (ventasCard.smoke == false && ventasCard.pets == true) {
+    htmlVentas += `<p class="text-danger">
                 <i class="fas fa-smoking-ban"></i> No se permite fumar
               </p>
-              <p class="text-danger">
-                <i class="fa-solid fa-ban"></i> No se permiten mascotas
+              <p class="text-success">
+                <i class="fa-solid fa-paw"></i> Mascotas permitidas
               </p>
             </div>
           </div>
-        </div>
-    `;
+        </div>`;
+  } else if (ventasCard.smoke == true && ventasCard.pets == false) {
+    htmlVentas += `<p class="text-success">
+                    <i class="fas fa-smoking"></i> Permitido fumar
+                  </p>
+                  <p class="text-danger">
+                    <i class="fa-solid fa-ban"></i> No se permiten mascotas
+                  </p>
+                </div>
+              </div>
+            </div>`;
+  } else if (ventasCard.smoke == false && ventasCard.pets == false) {
+    htmlVentas += `<p class="text-danger">
+                    <i class="fas fa-smoking-ban"></i> No se permite fumar
+                  </p>
+                  <p class="text-danger">
+                    <i class="fa-solid fa-ban"></i> No se permiten mascotas
+                  </p>
+                </div>
+              </div>
+            </div>`;
+  }
 }
 
 elementoVentas.innerHTML = htmlVentas;
+
+//--------------//
+/* <p class="text-danger">
+<i class="fas fa-smoking-ban"></i> No se permite fumar
+</p>
+<p class="text-danger">
+<i class="fa-solid fa-ban"></i> No se permiten mascotas
+</p>
+
+<p class="text-success">
+<i class="fas fa-smoking"></i> Permitido fumar
+</p>
+<p class="text-success">
+<i class="fas fa-paw"></i> Mascotas permitidas
+</p> */
+//--------------//
 
 function tresPrimerasVentas() {
   let tresVentas = propiedades_venta.slice(0, 3);
@@ -145,17 +192,49 @@ function tresPrimerasVentas() {
                 </p>
                 <p><i class="fas fa-dollar-sign"></i> ${casa.costo.toLocaleString(
                   "de-DE"
-                )}</p>
-                <p class="text-danger">
-                  <i class="fas fa-smoking-ban"></i> No se permite fumar
-                </p>
-                <p class="text-danger">
-                  <i class="fa-solid fa-ban"></i> No se permiten mascotas
-                </p>
+                )}</p>`;
+
+    if (casa.smoke == true && casa.pets == true) {
+      paraInsertar += `<p class="text-success">
+                    <i class="fas fa-smoking"></i> Permitido fumar
+                  </p>
+                  <p class="text-success">
+                    <i class="fa-solid fa-paw"></i> Mascotas permitidas
+                  </p>
+                </div>
               </div>
+            </div>`;
+    } else if (casa.smoke == false && casa.pets == true) {
+      paraInsertar += `<p class="text-danger">
+                <i class="fas fa-smoking-ban"></i> No se permite fumar
+              </p>
+              <p class="text-success">
+                <i class="fa-solid fa-paw"></i> Mascotas permitidas
+              </p>
             </div>
           </div>
-        `;
+        </div>`;
+    } else if (casa.smoke == true && casa.pets == false) {
+      paraInsertar += `<p class="text-success">
+                    <i class="fas fa-smoking"></i> Permitido fumar
+                  </p>
+                  <p class="text-danger">
+                    <i class="fa-solid fa-ban"></i> No se permiten mascotas
+                  </p>
+                </div>
+              </div>
+            </div>`;
+    } else if (casa.smoke == false && casa.pets == false) {
+      paraInsertar += `<p class="text-danger">
+                    <i class="fas fa-smoking-ban"></i> No se permite fumar
+                  </p>
+                  <p class="text-danger">
+                    <i class="fa-solid fa-ban"></i> No se permiten mascotas
+                  </p>
+                </div>
+              </div>
+            </div>`;
+    }
   }
   toSell.innerHTML = paraInsertar;
 }
