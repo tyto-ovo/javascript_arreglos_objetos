@@ -119,3 +119,45 @@ for (let alquilerCard of propiedades_alquiler) {
 }
 
 elementoAlquiler.innerHTML = htmlAlquiler;
+
+function tresPrimerosArriendos() {
+  let tresArriendos = propiedades_alquiler.slice(0, 3);
+  let toRent = document.getElementById("tresRent");
+
+  let paraInsertar = ``;
+  for (let casa of tresArriendos) {
+    paraInsertar += `
+          <div class="col-md-4 mb-4">
+              <div class="card">
+                <img
+                  src=${casa.src}
+                  class="card-img-top"
+                  alt="Imagen del departamento"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">${casa.nombre}</h5>
+                  <p class="card-text">
+                    ${casa.descripcion}
+                  </p>
+                  <p>
+                    <i class="fas fa-map-marker-alt"></i> ${casa.ubicacion}
+                  </p>
+                  <p>
+                    <i class="fas fa-bed"></i> ${casa.habitaciones} Habitaciones
+                  </p>
+                  <p><i class="fas fa-dollar-sign"></i> ${casa.costo.toLocaleString(
+                    "de-DE"
+                  )}</p>
+                  <p class="text-danger">
+                    <i class="fas fa-smoking-ban"></i> No se permite fumar
+                  </p>
+                  <p class="text-danger">
+                    <i class="fa-solid fa-ban"></i> No se permiten mascotas
+                  </p>
+                </div>
+              </div>
+            </div>
+          `;
+  }
+  toRent.innerHTML = paraInsertar;
+}
